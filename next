@@ -1,0 +1,33 @@
+#!/bin/bash 
+
+current_exercise_no=$(ls *_instructions.txt \
+    | grep -oE "^[0-9]{2}_instructions.txt" \
+    | grep -oE "^[0-9]{2}" \
+    | sort \
+    | tail -n 1)
+if [ -z "${current_exercise_no}" ];
+then
+    current_exercise_no="01"
+fi
+next_exercise_no="$(printf "%02d" "$(( ${current_exercise_no} + 1 ))")"
+
+echo "Retrieving exercise $next_exercise_no"
+
+(git checkout $(whoami) || git checkout -b $(whoami)) 2> /dev/null
+
+if ! git status | grep "nothin.*to commit" &> /dev/null
+then 
+  git add *.clj && git commit --allow-empty -anm "Commit exercise $(printf "%02d" ${current_exercise_no})"
+fi
+
+git fetch --all
+
+if ! git branch -a | grep "/origin/${next_exercise_no}" &> /dev/null
+then
+    echo "die nächste Übung ist noch nicht verfügbar"
+    exit 1
+fi 
+
+git merge --no-ff -m "Fetching exercise ${next_exercise_no}" origin/${next_exercise_no}
+
+cat ${next_exercise_no}_instructions.txt

@@ -1,0 +1,7 @@
+# Tutorial Step 1
+
+Create a leinigen project for your todo app.
+
+`lein new todo-app`
+
+Update the `project.clj` so that it contains the latest version of the hiccup templating library (currently version "1.0.5")
