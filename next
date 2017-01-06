@@ -24,7 +24,7 @@ git fetch --all
 
 if ! git branch -a | grep "/origin/${next_exercise_no}" &> /dev/null
 then
-    echo "die nächste Übung ist noch nicht verfügbar"
+    echo "The next exercise is not yet available"
     exit 1
 fi 
 
