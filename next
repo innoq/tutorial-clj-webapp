@@ -7,7 +7,7 @@ current_exercise_no=$(ls *_instructions.txt \
     | tail -n 1)
 if [ -z "${current_exercise_no}" ];
 then
-    current_exercise_no="01"
+    current_exercise_no="00"
 fi
 next_exercise_no="$(printf "%02d" "$(( ${current_exercise_no} + 1 ))")"
 
