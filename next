@@ -30,4 +30,4 @@ fi
 
 git merge --no-ff -m "Fetching exercise ${next_exercise_no}" origin/${next_exercise_no}
 
-cat ${next_exercise_no}_instructions.txt
+cat tutorial/chapters/${next_exercise_no}_instructions.md
