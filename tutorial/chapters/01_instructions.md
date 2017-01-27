@@ -2,13 +2,13 @@
 
 Congratulations! You have created your first Clojure web application!
 
-Currently, the application has one route '/' which returns a message in text format. 
+Currently, the application has one route '/' which returns a message in text format.
 
-We've created an example application `example-todo-app` which will illustrate our solution to the different tasks throughout the rest of the tutorial.  
+We've created an example application `example-todo-app` which will illustrate our solution to the different tasks throughout the rest of the tutorial.
 
 ## HTML Templating
 
-We would like for this route to return an HTML page instead of using text. For this, we can use the Hiccup library which translates Clojure data structures into the html format.
+We would like for this route to return an HTML page instead of using text. For this, we can use the Hiccup library which translates Clojure data structures into the HTML format.
 
 In Clojure, one of the datatypes is a keyword. This is a symbolic identifier which stands for itself. A keyword looks like this:
 
@@ -27,7 +27,7 @@ Hiccup takes advantage of the fact that conceptually, an HTML element is a list 
         <div>I am a subelement too!</div>
     </div>
 
-In Clojure we have something like a list (Vectors!) and something like a name (Keywords!), so we can combine them to get a representation of an html page.
+In Clojure we have something like a list (Vectors!) and something like a name (Keywords!), so we can combine them to get a representation of an HTML page.
 
     [:body
        [:h1 "Title"]
@@ -43,13 +43,13 @@ Hiccup provides the `hiccup.page/html5` element for generating an HTML5 page fro
 
 ## Namespaces
 
-In Clojure, functions are defined within a namespace. A new namespace can be created by creating a file `my_file.clj` within the src root of the project. Within this file, the namespace is defined with the `ns` macro and the namespace name, which is the path of the file with '-' instead of '_' and '.' instead of '/'
+In Clojure, functions are defined within a namespace. A new namespace can be created by creating a file `my_file.clj` within the src root of the project. Within this file, the namespace is defined with the `ns` macro and the namespace name, which is the path of the file with '-' instead of '\_' and '.' instead of '/'
 
 The file `src/example_web_app/my_file.clj` will therefore have the following namespace declaration.
 
     (ns example-web-app.my-file)
 
-If you want to use these functions within another namespace, you need to explicitly require the namespace to load it
+If you want to use these functions within another namespace, you need to explicitly require the namespace
 
     (ns example.handler
        (:require [hiccup.page]))
@@ -61,15 +61,15 @@ If you want to use the function without the namespace prefix, you can refer them
     (ns example.handler
        (:require [hiccup.page :refer [html5]]))
 
-Or you can just refer all of the functions from a namespace (only a good idea if you use a lot of them and know that there will be no name clashes with any other namespaces that you are loading):
+Or you can just refer all of the functions from a namespace (only a good idea if you use a lot of them and know that there will be no name clashes with any other namespaces that you are requiring):
 
     (ns example.handler
        (:require [hiccup.page :refer :all]))
 
 Task 01:
 
-Update your application to include a dependency to hiccup (currently in version `2.0.0-alpha1`). 
-Create a `page` function which takes the title of a page and embeds it in a generated html document.
+Update your application to include a dependency to hiccup (currently in version `2.0.0-alpha1`).
+Create a `page` function which takes the title of a page and embeds it in a generated HTML document.
 Use this function to produce HTML for the main route which sets the title of the page to `TODO App`.
 
 Tests for this behavior can be found in the `handler_test.clj` file.
