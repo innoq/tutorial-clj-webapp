@@ -1,8 +1,8 @@
 #!/bin/bash 
 
 current_exercise_no=$(ls tutorial/chapters/*_instructions.md \
-    | grep -oE "tutorial/chapters/^[0-9]{2}_instructions.md" \
-    | grep -oE "tutorial/chapters/^[0-9]{2}" \
+    | grep -oE "tutorial/chapters/[0-9]{2}_instructions.md" \
+    | grep -oE "[0-9]{2}" \
     | sort \
     | tail -n 1)
 if [ -z "${current_exercise_no}" ];
