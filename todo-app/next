@@ -1,0 +1,29 @@
+#!/bin/bash 
+
+current_exercise_no=$(ls test/todo_app/*_tests.clj \
+    | grep -oE "test/todo_app/[0-9]{2}_tests.clj" \
+    | grep -oE "[0-9]{2}" \
+    | sort \
+    | tail -n 1)
+next_exercise_no="$(printf "%02d" "$(( ${current_exercise_no} + 1 ))")"
+
+lein test
+
+rc=$?
+if [[ $rc != 0 ]]
+then 
+	echo "Try again before going on to the next exercise!"
+	exit $rc; 
+fi
+
+if ! ls tests | grep "${next_exercise_no}_tests.clj" &> /dev/null
+then
+	echo "There are no test for the next exercise!"
+	echo "You must be done with your web application!"
+    echo
+    echo "Congratulations!"
+    exit 0
+fi
+
+echo "Retrieving tests for $next_exercise_no"
+cp tests/${next_exercise_no}_tests.clj test/todo_app

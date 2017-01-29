@@ -1,1 +1,3 @@
-lein ring server-headless
+#!/bin/bash
+
+lein ring server 4000
