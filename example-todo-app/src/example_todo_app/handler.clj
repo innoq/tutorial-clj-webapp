@@ -14,7 +14,7 @@
   (html5 
     [:head 
      [:title title]
-     (include-css "splendor.min.css" "style.css")]
+     (include-css "splendor.css")]
     [:body [:h1 title] body]))
 
 (defn index []
