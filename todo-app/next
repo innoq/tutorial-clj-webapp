@@ -22,7 +22,7 @@ then
 	echo "You must be done with your web application!"
     echo
     echo "Congratulations!"
-    exit 1
+    exit 0
 fi
 
 echo "Retrieving tests for $next_exercise_no"
