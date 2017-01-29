@@ -8,8 +8,7 @@
 
 (deftest test-add!
   (testing "adding todo"
-    (let [oldtodos @todos
-          newtodo  (add-todo! "Do sth cool!")]
+    (let [newtodo  (add-todo! "Do sth cool!")]
       (is (= (last @todos) newtodo))
       (is (= (:text newtodo) "Do sth cool!")))))  
 
