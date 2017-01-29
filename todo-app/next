@@ -7,7 +7,7 @@ current_exercise_no=$(ls test/todo_app/*_tests.clj \
     | tail -n 1)
 next_exercise_no="$(printf "%02d" "$(( ${current_exercise_no} + 1 ))")"
 
-lein test .
+lein test
 
 rc=$?
 if [[ $rc != 0 ]]
@@ -16,25 +16,14 @@ then
 	exit $rc; 
 fi
 
-echo "Retrieving exercise $next_exercise_no"
+if ! ls tests | grep "${next_exercise_no}_tests.clj" &> /dev/null
+then
+	echo "There are no test for the next exercise!"
+	echo "You must be done with your web application!"
+    echo
+    echo "Congratulations!"
+    exit 1
+fi
 
-#(git checkout $(whoami) || git checkout -b $(whoami)) 2> /dev/null
-
-#if ! git status | grep "nothin.*to commit" &> /dev/null
-#then 
-#  git add *.clj && git commit --allow-empty -anm "Commit exercise $(printf "%02d" ${current_exercise_no})"
-#fi
-
-
-#git fetch --all
-
-
-#if ! git branch -a | grep "/origin/${next_exercise_no}" &> /dev/null
-#then
-#    echo "The next exercise is not yet available"
-#    exit 1
-#fi 
-
-#git merge --no-ff -m "Fetching exercise ${next_exercise_no}" origin/${next_exercise_no}
-
-#cat tutorial/chapters/${next_exercise_no}_instructions.md
+echo "Retrieving tests for $next_exercise_no"
+cp tests/${next_exercise_no}_tests.clj test/todo_app

@@ -1,7 +1,6 @@
-# Chapter 02
-## Creating our domain objects
+# Creating Domain Objects
 
-In Clojure, all data types are immutable. When adding to a collection, a new collection is returned. This uses [persistent data structures](https://en.wikipedia.org/wiki/Persistent_data_structure) so that the data structures are still efficient. 
+In Clojure, all data types are immutable. When adding to a collection, a new collection is returned. As stated in [the last section](/01_instructions.md), this uses [persistent data structures](https://en.wikipedia.org/wiki/Persistent_data_structure) so that the data structures are still efficient. 
 
 This is done because a value in the real world does not and cannot change: the value `42` will always be `42`. 
 
@@ -9,7 +8,7 @@ However, when we are dealing with the real world we have the concept of **identi
 
 This logical entity will have exactly one state at any given point of time.
 
-An in depth explanation can be found here: https://clojure.org/about/state
+An in depth explanation can be found [here](https://clojure.org/about/state).
 
 In Clojure, we can use atoms to model this concept of identity. For instance, we can define a logical entity 'counter' whose state will be incremented over time.
 
@@ -27,7 +26,7 @@ In Clojure the `!` is used to denote a function which has a side effect.
 
 ## Task 02:
 
-Define a new namespace `domain.clj` in your project.
+Define a new namespace `src/todo_app/domain.clj` in your project.
 
 Define the domain objects for the application in this file. We will model our application state `todos` as a vector containing Clojure maps with the following form:
 
@@ -37,6 +36,8 @@ Create a function `add-todo!` which adds an item to the list and then returns th
 
 Create a function `remove-todo!` which takes an item id and removes the correct item from the list.
 
-Hint: use the https://clojure.org/api/cheatsheet to see what functions can be used for dealing with maps, vectors, and keywords!
+Hint: use the [Clojure Cheatsheet](https://clojure.org/api/cheatsheet) to see what functions can be used for dealing with maps, vectors, and keywords!
 
-The desired behavior of the domain model can be seen in the `domain_test` in the example-todo-app.
+You've hopefully either executed the `next` script or copied the `tests/02_tests.clj` file over to your project. Once these tests pass, move on to the next task!
+
+If you need some help, look at the `cheats/02/domain.clj` file.

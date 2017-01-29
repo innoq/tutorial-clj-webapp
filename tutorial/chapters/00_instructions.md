@@ -1,22 +1,33 @@
-# Tutorial Step 1
+# First Steps
 
-Install [leinigen](http://github.com/technomancy/leinigen) to build your clojure project.
+If you are reading this tutorial, the chances that you have downloaded the correct git archive are quite high. 
 
-Create a leinigen project for your todo app based on the compojure template.
+Congratulations!
 
-`lein new compojure todo-app`
+If you are viewing this tutorial in a browser, the chances that you have already installed [leinigen](http://github.com/technomancy/leinigen) are also quite high. If this is not the case, please do this right now.
 
-Update the `project.clj` so that it contains the latest version of the hiccup templating library (currently version "1.0.5")
+During this tutorial we want to have a hands on experience with Clojure and build a Clojure web application from the base up.
 
-The application can be started with the command:
+The app that we are going to be working on is the `todo-app` (so if you `'cd tutorial'`ed to start this tutorial, `cd ../todo-app` to get into the correct directory now). From now on, we will assume you are working in this directory. 
+ 
+The app was created using the compojure leinigen template
 
-`lein ring server`
+    lein new compojure todo-app
 
-By default, this will start a server on port 3000.
+If you are using the [Nightcode IDE](https://sekao.net/nightcode/) for developing Clojure (which I recommend, especially when starting out with the language), you can start the application directly from the IDE.
 
-Try to modify the application so that it returns the string "Hello My Lovely World!"
+Otherwise, you can start the app from the command line:
 
-Once you are done, execute the `./next` script to retrieve the next instruction step. 
+    lein ring server
 
-If you don't know what to do, execute the `./next` script to retrieve an example application.
+By default, this will start a server on port 3000 (the port can also be optionally specified as an additional argument)
 
+For each task in the tutorial, we have created a test file to test if the the task has been fulfilled. The first test file can already be found in the project test files: `/test/todo_app/01_tests.clj`
+
+The tests can be run as follows:
+
+    lein test
+
+Further tests for each task can be found in the `tests/` directory. If you are stuck on a specific task, don't despair! There is a `cheats/` directory which contains an example namespace that you can copy over to your project source files (`src/todo_app`) so that the tests will pass. 
+
+If you think that you have finished one of the tasks, you can execute the `next` script which will check if all tests pass, and if so, will copy over the next test file.
