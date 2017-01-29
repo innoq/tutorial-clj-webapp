@@ -15,7 +15,7 @@ The purpose of this tutorial is to help you build your first clojure web applica
 We've created the bare bones for a web application in the `todo-app` directory. 
 During this tutorial, we will develop this application using test driven development. There are tests that have been created for each step in the tutorial to test if the task was correctly solved. These tests can be found in the `tests/` directory. If you want to retrieve these automatically, you can execute the `next` script if you want to retrieve the next tests. This will only be successful if the tests for the last task pass. ;)
 
-If you get stuck, don't despair! We've created the directory `cheats/` which contains namespaces that you can copy into your project in order to get the tests to pass or to get an idea what you can do to fix your code. A final application passing all of the tests is also included in the `example-todo-app` directory.
+If you get stuck, don't despair! We've created the directory `cheats/` which contains namespaces that you can copy into your project in order to get the tests to pass or to get an idea what you can do to fix your code. 
 
 ## The instructions for the tutorial.
 
