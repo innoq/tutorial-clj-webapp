@@ -1,5 +1,5 @@
 (ns tutorial.handler
-  (:require [compojure.core :refer :all]
+  (:require [compojure.core :refer [defroutes GET]]
             [compojure.route :as route]
             [clojure.java.io :as io]
             [clojure.string :as str]
