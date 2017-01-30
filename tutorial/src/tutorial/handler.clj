@@ -39,18 +39,16 @@
                   (link-name (:text chapter)))])]))
 
 (defn show [chapter-name]
-  (let [chapters (drop-while #(not= chapter-name (:name %)) (load-chapters))
-        chapter (first chapters)
-        next-chapter (second chapters)]
+  (let [[chapter next] (drop-while #(not= chapter-name (:name %)) (load-chapters))]
     (when chapter
       (page
         (:name chapter)
         [:p (link-to "/" "Back to Tutorial")
             (md-to-html-string (:text chapter))]
-        (when next-chapter
+        (when next
           [:p (link-to
-                (:name next-chapter)
-                (str "Next: " (link-name (:text next-chapter))))])))))
+                (:name next)
+                (str "Next: " (link-name (:text next))))])))))
 
 (defroutes app-routes
   (GET "/" [] (index))
