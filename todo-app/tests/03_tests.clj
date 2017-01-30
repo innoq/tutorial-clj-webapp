@@ -1,5 +1,6 @@
 (ns todo-app.03-tests
   (:require [clojure.test :refer :all]
+            [clojure.string :as str]
             [ring.mock.request :as mock]
             [todo-app.domain :refer [todos]]
             [todo-app.handler :refer :all]
@@ -10,7 +11,7 @@
     (reset! todos [{:id 0 :text "Buy Milk!"} {:id 1 :text "Buy Pizza!"}])
     (let [response (app (mock/request :get "/"))]
       (is (= (:status response) 200))
-      (is (.contains (:body response) "<h1>TODO App</h1><ul><li><a href=\"/0\">Buy Milk!</a></li><li><a href=\"/1\">Buy Pizza!</a></li></ul>")))))
+      (is (str/includes? (:body response) "<h1>TODO App</h1><ul><li><a href=\"/0\">Buy Milk!</a></li><li><a href=\"/1\">Buy Pizza!</a></li></ul>")))))
 
 (deftest test-add-route 
   (testing "add route"
@@ -37,7 +38,7 @@
     (reset! todos [{:id 1 :text "Buy Milk!"}])
     (let [response (app (mock/request :get "/1"))]
        (is (:status response) 200)
-       (is (.contains (:body response) "Buy Milk!")))))
+       (is (str/includes? (:body response) "Buy Milk!")))))
   
 (deftest test-delete
   (testing "delete route"
