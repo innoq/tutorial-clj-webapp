@@ -1,6 +1,6 @@
 (ns todo-app.handler
   (:require [compojure.coercions :refer [as-int]]
-            [compojure.core :refer :all]
+            [compojure.core :refer [defroutes GET POST DELETE]]
             [compojure.route :as route]
             [hiccup.page :refer [html5 include-css]]
             [hiccup.form :as f]

@@ -2,7 +2,7 @@
   (:require [clojure.test :refer :all]
             [clojure.string :as str]
             [ring.mock.request :as mock]
-            [todo-app.handler :refer :all]))
+            [todo-app.handler :refer [page app]]))
 
 (deftest test-page
   (testing "page function"

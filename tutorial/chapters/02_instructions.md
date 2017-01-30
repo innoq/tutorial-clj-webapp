@@ -26,11 +26,15 @@ In Clojure the `!` is used to denote a function which has a side effect.
 
 ## Task 02:
 
-Define a new namespace `src/todo_app/domain.clj` in your project.
+We have defined the namespace `src/todo_app/domain.clj` which contains the stubs of the functions needed to define the domain model for this application. To complete the task, modify the functions so that the tests pass!
 
-Define the domain objects for the application in this file. We will model our application state `todos` as a vector containing Clojure maps with the following form:
+We first need to define our `todos` atom which will contain the application state as a vector containing Clojure maps with the following form:
 
-    {:id 3 :text "Some text!"} ;; the id should be unique for a todo item!
+    {:id 3 :text "Some text!"}
+
+The id of the function should be unique. 
+
+Create a `gen-id` function which generates a unique id. The tests for the application assume that this id is an integer.
 
 Create a function `add-todo!` which adds an item to the list and then returns the new item.
 

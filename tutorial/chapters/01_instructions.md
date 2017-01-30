@@ -92,6 +92,8 @@ The file `src/example_web_app/my_file.clj` will therefore have the following nam
 
     (ns example-web-app.my-file)
 
+You can also use namespaces from different projects by updating the `project.clj` file in your project root to add the project as a dependency (i.e. to add the compojure library, add `[compojure "1.5.1"]` to the dependencies in the `project.clj`).
+
 If you want to use these functions within another namespace, you need to explicitly require the namespace
 
     (ns example.handler
@@ -113,7 +115,7 @@ Or you can just refer all of the functions from a namespace (only a good idea if
 
 Update your application by modifiying the `project.clj` file to include a dependency to hiccup (currently in version `2.0.0-alpha1`).
 
-In the `src/todo_app/handler.clj` file, create a `page` function which sets the title of the page and adds a variable number of elements to the body of the page. Also include the 'splendor.css' file that is a static resource in the project (found under `resources/public`) to the HTML page (HINT: use the `hiccup.page/include-css` function).
+In the `src/todo_app/handler.clj` file, modify the `page` function so that it sets the title of the page and adds a variable number of elements to the body of the page. Also include the 'splendor.css' file that is a static resource in the project (found under `resources/public`) to the HTML page (HINT: use the `hiccup.page/include-css` function).
 
 Use this function to produce HTML for the main route "/" which sets the title of the page to `TODO App`.
 

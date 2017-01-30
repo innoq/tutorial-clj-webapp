@@ -31,3 +31,5 @@ The tests can be run as follows:
 Further tests for each task can be found in the `tests/` directory. If you are stuck on a specific task, don't despair! There is a `cheats/` directory which contains an example namespace that you can copy over to your project source files (`src/todo_app`) so that the tests will pass. 
 
 If you think that you have finished one of the tasks, you can execute the `next` script which will check if all tests pass, and if so, will copy over the next test file.
+
+There are no tests for this step in the tutorial, so go on to the next step!

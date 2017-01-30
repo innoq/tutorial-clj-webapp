@@ -3,7 +3,7 @@
             [clojure.string :as str]
             [ring.mock.request :as mock]
             [todo-app.domain :refer [todos]]
-            [todo-app.handler :refer :all]
+            [todo-app.handler :refer [app app-routes]]
             [hiccup.form :as f]))
 
 (deftest test-index
