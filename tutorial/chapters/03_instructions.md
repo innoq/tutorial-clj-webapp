@@ -41,7 +41,7 @@ It is not necessary to write a lot of middleware when just getting started. The 
 
 ## CSRF
 
-Among other things, the middleware initializes the [CSRF Protection](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF\)) that is available in Clojure. Clojure protects against Anti-Forgery attacks by rendering a secret into the HTML of a web page. With requests which modify the application state (i.e. :post, :put, :delete, :patch), the client needs to send this secret back to the server so that the server knows that it comes from a valid user. This secret can be added into your application by generating a `ring.util.anti-forgery/anti-forgery-field` within all of the necessary forms in the application.
+Among other things, the middleware initializes the [CSRF Protection](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF\)) that is available in Clojure. Clojure protects against CSRF attacks by rendering a secret into the HTML of a web page. With requests which modify the application state (i.e. :post, :put, :delete, :patch), the client needs to send this secret back to the server so that the server knows that it comes from a valid user. This secret can be added into your application by generating a `ring.util.anti-forgery/anti-forgery-field` within all of the necessary forms in the application.
 
 ## XSS
 
