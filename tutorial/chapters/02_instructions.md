@@ -28,7 +28,7 @@ In Clojure the `!` is used to denote a function which has a side effect.
 
 We have defined the namespace `src/todo_app/domain.clj` which contains the stubs of the functions needed to define the domain model for this application. To complete the task, modify the functions so that the tests pass!
 
-We first need to define our `todos` atom which will contain the application state as a vector containing Clojure maps with the following form:
+We first need to decide how we want to model our application state (hint: use an atom!). The todo items themselves should have the following form:
 
     {:id 3 :text "Some text!"}
 
@@ -39,6 +39,10 @@ Create a `gen-id` function which generates a unique id. The tests for the applic
 Create a function `add-todo!` which adds an item to the list and then returns the new item.
 
 Create a function `remove-todo!` which takes an item id and removes the correct item from the list.
+
+Create a function `all-todos` which returns a collection containing all of the todo elements.
+
+Create a function `todo-by-id` which retrieves a specific todo by its id.
 
 Hint: use the [Clojure Cheatsheet](https://clojure.org/api/cheatsheet) to see what functions can be used for dealing with maps, vectors, and keywords!
 

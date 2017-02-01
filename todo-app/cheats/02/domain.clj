@@ -1,7 +1,7 @@
 (ns todo-app.domain)
 
-(def counter (atom 0))
-(def todos (atom []))
+(def ^:private counter (atom 0))
+(def ^:private todos (atom []))
 
 (defn gen-id [] (swap! counter inc))
 
@@ -15,3 +15,8 @@
 
 (defn remove-todo! [id]
   (swap! todos remove-todo id))
+
+(defn all-todos [] @todos)
+
+(defn todo-by-id [id]
+  (first (filter #(= id (:id %)) @todos)))

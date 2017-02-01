@@ -6,7 +6,7 @@
             [hiccup.form :as f]
             [hiccup.util :refer [escape-html]]
             [hiccup.element :refer [link-to]]
-            [todo-app.domain :refer [todos add-todo! remove-todo!]]
+            [todo-app.domain :refer [all-todos todo-by-id add-todo! remove-todo!]]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [ring.util.anti-forgery :refer [anti-forgery-field]]
             [ring.util.response :refer [redirect]]))
@@ -21,7 +21,7 @@
 (defn index []
   (page "TODO App"
      [:ul
-       (for [todo @todos]
+       (for [todo (all-todos)]
          [:li (link-to (str "/" (:id todo)) (:text todo))])]
      (f/form-to [:post "/"]
                 (anti-forgery-field)
@@ -34,7 +34,7 @@
   (redirect "/"))
 
 (defn show-todo [id]
-  (let [todo (first (filter #(= id (:id %)) @todos))]
+  (let [todo (todo-by-id id)]
     (when todo 
       (page (str "TODO " id) 
         [:h2 (:text todo)]
