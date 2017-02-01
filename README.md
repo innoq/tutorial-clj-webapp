@@ -2,18 +2,18 @@
 
 ## Prerequisites
 
-The tutorial uses the Clojure build tool [leinigen](https://github.com/technomancy/leiningen), so this needs to be installed before running the tutorial.
+The tutorial uses the Clojure build tool [leiningen](https://github.com/technomancy/leiningen), so this needs to be installed before running the tutorial.
 
 Theoretically, you can use any text editor to create Clojure code. There are many diehard Emacs fans in the community.
 
-However, for starting out with using Clojure, I recommend downloading [Nightcode](https://sekao.net/nightcode/) which provides a Clojure IDE with the basic functionality needed to get your app up and running. This IDE also comes built in wiht the [parinfer](https://shaunlebron.github.io/parinfer/) plugin to help with setting the parentheses correctly.
+However, for starting out with using Clojure, I recommend downloading [Nightcode](https://sekao.net/nightcode/) which provides a Clojure IDE with the basic functionality needed to get your app up and running. This IDE also comes built in with the [parinfer](https://shaunlebron.github.io/parinfer/) plugin to help with setting the parentheses correctly.
 
 ## How this tutorial is structured
 
 The purpose of this tutorial is to help you build your first clojure web application. 
 
 We've created the bare bones for a web application in the `todo-app` directory. 
-During this tutorial, we will develop this application using test driven development. There are tests that have been created for each step in the tutorial to test if the task was correctly solved. These tests can be found in the `tests/` directory. If you want to retrieve these automatically, you can execute the `next` script if you want to retrieve the next tests. This will only be successful if the tests for the last task pass. ;)
+During this tutorial, we will develop this application using test driven development. There are tests that have been created for each step in the tutorial to test if the task was correctly solved. These tests can be found in the `tests/` directory. If you want to retrieve these automatically, you can execute the `next` script when you want to retrieve the next tests. This will only be successful if the tests for the last task pass. ;)
 
 If you get stuck, don't despair! We've created the directory `cheats/` which contains namespaces that you can copy into your project in order to get the tests to pass or to get an idea what you can do to fix your code. 
 
