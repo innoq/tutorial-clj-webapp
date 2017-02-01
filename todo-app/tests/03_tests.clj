@@ -1,49 +1,55 @@
 (ns todo-app.03-tests
   (:require [clojure.test :refer :all]
             [clojure.string :as str]
+            [hiccup.core :refer [html]]
+            [hiccup.element :refer [link-to]]
             [ring.mock.request :as mock]
-            [todo-app.domain :refer [todos]]
+            [todo-app.domain :refer [all-todos todo-by-id add-todo!]]
             [todo-app.handler :refer [app app-routes]]
             [hiccup.form :as f]))
 
 (deftest test-index
   (testing "index"
-    (reset! todos [{:id 0 :text "Buy Milk!"} {:id 1 :text "Buy Pizza!"}])
-    (let [response (app (mock/request :get "/"))]
+    (let [todos (all-todos)
+          response (app (mock/request :get "/"))
+          expected-html (html [:ul (for [todo todos] [:li (link-to (str "/" (:id todo)) (:text todo))])])]
       (is (= (:status response) 200))
-      (is (str/includes? (:body response) "<h1>TODO App</h1><ul><li><a href=\"/0\">Buy Milk!</a></li><li><a href=\"/1\">Buy Pizza!</a></li></ul>")))))
+      (is (str/includes? (:body response) "<h1>TODO App</h1>"))
+      (is (str/includes? (:body response) expected-html)))))
 
 (deftest test-add-route 
   (testing "add route"
-    (reset! todos [])
-    (let [response (app-routes (-> (mock/request :post "/")
+    (let [oldcount (count (all-todos))
+          response (app-routes (-> (mock/request :post "/")
                                    (assoc :params {:todo "Hi!"})))]
       (is (= (:status response) 302))
       (is (= (:headers response) {"Location" "/"}))
-      (is (= (count @todos) 1))))
+      (is (= (count (all-todos)) (inc oldcount)))))
   
   (testing "Do not add if todo empty"
-    (reset! todos [])
-    (let [response (app-routes (-> (mock/request :post "/")
+    (let [oldtodos (all-todos)
+          response (app-routes (-> (mock/request :post "/")
                                    (assoc :params {:todo ""})))]
-      (is (= (count @todos) 0))))
+      (is (= (all-todos) oldtodos))))
   
   (testing "Escape todo if evil!"
     (let [response (app-routes (-> (mock/request :post "/")
                                    (assoc :params {:todo "<script>alert('hi!')</script>"})))]
-      (is (= (:text (last @todos)) "&lt;script&gt;alert(&apos;hi!&apos;)&lt;/script&gt;")))))
+      (is (not-any? #(str/includes? % "<script>") (all-todos))))))
 
 (deftest test-show
   (testing "show route"
-    (reset! todos [{:id 1 :text "Buy Milk!"}])
-    (let [response (app (mock/request :get "/1"))]
+    (add-todo! "Make sure not empty!")
+    (let [first    (first (all-todos))
+          response (app (mock/request :get (str "/" (:id first))))]
        (is (:status response) 200)
-       (is (str/includes? (:body response) "Buy Milk!")))))
+       (is (str/includes? (:body response) (:text first))))))
   
 (deftest test-delete
   (testing "delete route"
-    (reset! todos [{:id 1 :text "Buy Milk!"}])
-    (let [response (app-routes (mock/request :delete "/1"))]
-      (is (= @todos []))
+    (let [oldtodos (all-todos)
+          todo     (add-todo! "To Delete")
+          response (app-routes (mock/request :delete (str "/" (:id todo))))]
+      (is (= (all-todos) oldtodos))
       (is (:status response) 302)
       (is (= (:headers response) {"Location" "/"})))))
