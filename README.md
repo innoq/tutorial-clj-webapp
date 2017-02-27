@@ -26,8 +26,14 @@ However, we have also written a small clojure web app to generate a website out 
 To start the web server:
 
         cd tutorial
+        
+Then start the server with:
 
-        lein ring server 4000 OR ./run_tutorial 
+        lein ring server 4000 
+
+OR use the `run_tutorial` script which does this for you:
+
+        ./run_tutorial 
 
 The browser should pop open to the address [http://localhost:4000](http://localhost:4000) and you can see the tutorial
 
