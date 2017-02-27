@@ -12,6 +12,11 @@ However, for starting out with using Clojure, I recommend downloading [Nightcode
 
 The purpose of this tutorial is to help you build your first clojure web application. 
 
+There are two subdirectories it this repository:
+
+* `todo-app/` Contains the Clojure project that we are going to modify in the course of this tutorial
+* `tutorial/` Contains the chapters of the tutorial in Markdown format. This can also be served as HTML as described in the next section
+
 We've created the bare bones for a web application in the `todo-app` directory. 
 During this tutorial, we will develop this application using test driven development. There are tests that have been created for each step in the tutorial to test if the task was correctly solved. These tests can be found in the `tests/` directory. If you want to retrieve these automatically, you can execute the `next` script when you want to retrieve the next tests. This will only be successful if the tests for the last task pass. ;)
 
