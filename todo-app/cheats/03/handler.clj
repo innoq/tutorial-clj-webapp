@@ -2,21 +2,27 @@
   (:require [compojure.coercions :refer [as-int]]
             [compojure.core :refer [defroutes GET POST DELETE]]
             [compojure.route :as route]
-            [hiccup.page :refer [html5 include-css]]
+            [hiccup.page :refer [doctype include-css]]
+            [hiccup2.core :refer [html]]
             [hiccup.form :as f]
-            [hiccup.util :refer [escape-html]]
             [hiccup.element :refer [link-to]]
             [todo-app.domain :refer [all-todos todo-by-id add-todo! remove-todo!]]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
-            [ring.util.anti-forgery :refer [anti-forgery-field]]
+            [ring.middleware.anti-forgery :refer [*anti-forgery-token*]]
             [ring.util.response :refer [redirect]]))
 
-(defn page [title & body]
-  (html5 
-    [:head 
-     [:title title]
-     (include-css "splendor.css")]
-    [:body [:h1 title] body]))
+(defn page [title & content]
+  (str
+    (html
+      (doctype :html5)
+      [:html
+       [:head
+        [:title title]
+        (include-css "splendor.css")]
+       [:body [:h1 title] content]])))
+
+(defn anti-forgery-field []
+  (f/hidden-field "__anti-forgery-token" *anti-forgery-token*))
 
 (defn index []
   (page "TODO App"
@@ -30,7 +36,7 @@
 
 (defn add-todo [todo]
   (when (not (clojure.string/blank? todo))    
-    (add-todo! (escape-html todo)))
+    (add-todo! todo))
   (redirect "/"))
 
 (defn show-todo [id]

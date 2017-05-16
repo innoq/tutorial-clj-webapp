@@ -41,13 +41,20 @@ It is not necessary to write a lot of middleware when just getting started. The 
 
 ## CSRF
 
-Among other things, the middleware initializes the [CSRF Protection](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF\)) that is available in Clojure. Clojure protects against CSRF attacks by rendering a secret into the HTML of a web page. With requests which modify the application state (i.e. :post, :put, :delete, :patch), the client needs to send this secret back to the server so that the server knows that it comes from a valid user. This secret can be added into your application by generating a `ring.util.anti-forgery/anti-forgery-field` within all of the necessary forms in the application.
+Among other things, the middleware initializes the [CSRF Protection](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF\)) that is available in Clojure. Clojure protects against CSRF attacks by rendering a secret into the HTML of a web page. With requests which modify the application state (i.e. :post, :put, :delete, :patch), the client needs to send this secret back to the server so that the server knows that it comes from a valid user. With Clojure middleware, a secret is generated and bound to the HTTP session for the request. This secret can be retrieved from the `ring.middleware.anti-forgery/*anti-forgery-token*` var. Then the ring middleware will check all forms and reject form requests which do not have a valid token in a field with the name `__anti-forgery-token`.
+
+We can create a function to create a hidden field for a function.
+
+    (defn anti-forgery-field []
+      (hiccup.form/hidden-field "__anti-forgery-token" *anti-forgery-token*))
+
+This field can then be added to the necessary forms to protect against CSRF attacks.
 
 ## XSS
 
-In our application, we are rendering String that we receive from the user directly in our HTML document. This makes us vulnerable for [XSS Attacks](https://www.owasp.org/index.php/Cross-site_Scripting_(XSS\)). In order to protect us, we can use the `hiccup.util/escape-html` function to escape the html output when we are rendering it in the document.
+In our application, we are rendering String that we receive from the user directly in our HTML document. This makes us vulnerable for [XSS Attacks](https://www.owasp.org/index.php/Cross-site_Scripting_(XSS\)) if we do not escape this HTML. Luckily, HTML is automatically escaped in Hiccup 2, so we don't have to worry about this any more. If you are using previous versions of Hiccup, you will need to use the `hiccup.util/escape-html` function to escape the html output before it is rendered in the document.
 
-Task 03:
+## Task 03:
 
 Define the following routes for the application
 

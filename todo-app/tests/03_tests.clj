@@ -33,9 +33,12 @@
       (is (= (all-todos) oldtodos))))
   
   (testing "Escape todo if evil!"
-    (let [response (app-routes (-> (mock/request :post "/")
-                                   (assoc :params {:todo "<script>alert('hi!')</script>"})))]
-      (is (not-any? #(str/includes? % "<script>") (all-todos))))))
+    (let [_ (app-routes (-> (mock/request :post "/")
+                            (assoc :params {:todo "<script>alert('hi!')</script>"})))
+          response (app-routes (app-routes (mock/request :get "/")))
+          responses (map #(app-routes (mock/request :get (str "/" (:id %)))) (all-todos))]
+      (is (not (str/includes? (:body response) "<script>")))
+      (is (not-any? #(str/includes? % "<script>") (map :body responses))))))
 
 (deftest test-show
   (testing "show route"
