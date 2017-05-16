@@ -4,7 +4,7 @@ If you are reading this tutorial, the chances that you have downloaded the corre
 
 Congratulations!
 
-If you are viewing this tutorial in a browser, the chances that you have already installed [leinigen](http://github.com/technomancy/leinigen) are also quite high. If this is not the case, please do this right now.
+If you are viewing this tutorial in a browser, the chances that you have already installed [leinigen](http://github.com/technomancy/leinigen) are also quite high. If you are using the [Nightcode IDE](https://sekao.net/nightcode/) it comes bundled with leinigen so you should be fine. If this is not the case, please do this right now.
 
 During this tutorial we want to have a hands on experience with Clojure and build a Clojure web application from the base up.
 
@@ -14,7 +14,7 @@ The app was created using the compojure leinigen template
 
     lein new compojure todo-app
 
-If you are using the [Nightcode IDE](https://sekao.net/nightcode/) for developing Clojure (which I recommend, especially when starting out with the language), you can start the application directly from the IDE.
+If you are using the [Nightcode IDE](https://sekao.net/nightcode/) for developing Clojure (which I recommend, especially when starting out with the language), you can start the application directly from the IDE (by hitting the `Run` button).
 
 Otherwise, you can start the app from the command line:
 

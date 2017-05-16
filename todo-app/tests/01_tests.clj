@@ -16,7 +16,7 @@
 (deftest styles-loaded
   (testing "css stylesheet linked"
     (let [html (page "Some title")]
-      (is (str/includes? html "<link href=\"splendor.css\" rel=\"stylesheet\" type=\"text/css\">")))))
+      (is (str/includes? html "<link href=\"splendor.css\" rel=\"stylesheet\" type=\"text/css\" />")))))
 
 (deftest test-app
   (testing "main route"

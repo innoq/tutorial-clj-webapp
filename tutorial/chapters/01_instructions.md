@@ -1,8 +1,8 @@
 # Basics, HTML Templating, and  Namespaces
 
-If you have started the `todo-app` with `lein ring server` you can see what the app looks like at `http://localhost:3000`
+If you have started the `todo-app` with `lein ring server` or from Nightcode, you can see what the app looks like at `http://localhost:3000`
 
-The app currently only has a single route '/' which returns a message in text format. We want to return HTML instead of text, so let's look at what resources Clojure has to help us with this.
+The app currently only has a single route `/` which returns a message in text format. We want to return HTML instead of text, so let's look at what resources Clojure has to help us with this.
 
 ## Basics
 
@@ -75,12 +75,15 @@ In Clojure we have something like a list (Vectors!) and something like a name (K
        [:h1 "Title"]
        "Some content!"]
 
-Hiccup provides the `hiccup.page/html5` element for generating an HTML5 page from such a data structure. This can also be combined with functions to have reusable templates!
+Hiccup provides the some built in elements that we can use out of the box. The `hiccup.page/doctype` function, for instance, can be used to generate the doctype for an HTML5 page. We can use the `hiccup2.core/html` function to generate the final HTML (HTML escaping by default was only introduced in Hiccup 2...but better late than never! For this reason, use the `hiccup2.core/html` function instead of the `hiccup.core/html` function which is still included for compatibility reasons). The `hiccup2.core/html` emits a `raw string` that we can then transform to a string with the `str` function.  We can now write a function that will be a reusable page template!
 
     (defn page [title & content]
-       (html5
-          [:head [:title title]]
-          [:body content]))
+      (str
+        (html
+          (doctype :html5)
+            [:html
+              [:head [:title title]]
+              [:body content]]))
 
 The `&` in the function specifies that the function takes a variable number of arguments. The first argument `title` is required, and any others that are passed in will be bound to `content` as a list. In Hiccup, you can simply insert the list of elements, and these will be rendered correctly within the body tag.
 

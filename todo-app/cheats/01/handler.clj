@@ -1,15 +1,19 @@
 (ns todo-app.handler
   (:require [compojure.core :refer [defroutes GET POST DELETE]]
             [compojure.route :as route]
-            [hiccup.page :refer [html5 include-css]]
+            [hiccup.page :refer [doctype include-css]]
+            [hiccup2.core :refer [html]]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
 
 (defn page [title & content]
-  (html5 
-    [:head 
-     [:title title]
-     (include-css "splendor.css")]
-    [:body content]))
+  (str
+    (html
+      (doctype :html5)
+      [:html
+       [:head
+        [:title title]
+        (include-css "splendor.css")]
+       [:body content]])))
 
 (defn index []
   (page "TODO App" 
