@@ -102,12 +102,12 @@ If you want to use these functions within another namespace, you need to explici
     (ns example.handler
        (:require [hiccup.page]))
 
-Then functions from this namespace can be used by prefixing them with the namespace, i.e. `hiccup.page/html5`
+Then functions from this namespace can be used by prefixing them with the namespace, i.e. `hiccup.page/doctype`
 
 If you want to use the function without the namespace prefix, you can refer them after requiring them.
 
     (ns example.handler
-       (:require [hiccup.page :refer [html5]]))
+       (:require [hiccup.page :refer [doctype]]))
 
 Or you can just refer all of the functions from a namespace (only a good idea if you use a lot of them and know that there will be no name clashes with any other namespaces that you are requiring):
 
@@ -120,7 +120,7 @@ Update your application by modifiying the `project.clj` file to include a depend
 
 In the `src/todo_app/handler.clj` file, modify the `page` function so that it sets the title of the page and adds a variable number of elements to the body of the page. Also include the 'splendor.css' file that is a static resource in the project (found under `resources/public`) to the HTML page (HINT: use the `hiccup.page/include-css` function).
 
-Use this function to produce HTML for the main route "/" which sets the title of the page to `TODO App`.
+Use this function to produce HTML for the main route `/` which sets the title of the page to `TODO App`.
 
 Tests for this task are already present in the `/test/todo_app/01_tests.clj` file. 
 
