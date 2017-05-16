@@ -3,12 +3,12 @@
   :url "http://example.com/FIXME"
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.8.0"]
-                 [compojure "1.5.1"]
+                 [compojure "1.6.0"]
                  [ring/ring-core "1.6.1"]
-                 [ring/ring-defaults "0.2.1"]
-                 [ring/ring-jetty-adapter "1.2.1"]
+                 [ring/ring-defaults "0.3.0"]
+                 [ring/ring-jetty-adapter "1.6.1"]
                  [hiccup "2.0.0-alpha1"]
-                 [markdown-clj "0.9.92"]]
+                 [markdown-clj "0.9.99"]]
   :main tutorial.core
   :plugins [[lein-ring "0.9.7"]]
   :ring {:handler tutorial.handler/app}
