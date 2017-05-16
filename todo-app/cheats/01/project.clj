@@ -3,7 +3,7 @@
   :url "http://example.com/FIXME"
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.9.0-alpha14"]
-                 [compojure "1.6.1"]
+                 [compojure "1.6.0"]
                  [hiccup "2.0.0-alpha1"]
                  [ring/ring-core "1.6.1"]
                  [ring/ring-defaults "0.3.0"]
