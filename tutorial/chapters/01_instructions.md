@@ -81,9 +81,9 @@ Hiccup provides the some built in elements that we can use out of the box. The `
       (str
         (html
           (doctype :html5)
-            [:html
-              [:head [:title title]]
-              [:body content]]))
+          [:html
+            [:head [:title title]]
+            [:body content]])))
 
 The `&` in the function specifies that the function takes a variable number of arguments. The first argument `title` is required, and any others that are passed in will be bound to `content` as a list. In Hiccup, you can simply insert the list of elements, and these will be rendered correctly within the body tag.
 
