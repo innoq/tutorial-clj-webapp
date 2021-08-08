@@ -7,7 +7,7 @@
                  [ring/ring-core "1.6.1"]
                  [ring/ring-defaults "0.3.0"]
                  [ring/ring-jetty-adapter "1.6.1"]]
-  :plugins [[lein-ring "0.9.7"]]
+  :plugins [[lein-ring "0.12.5"]]
   :main todo-app.core
   :ring {:handler todo-app.handler/app}
   :profiles

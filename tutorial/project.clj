@@ -10,7 +10,7 @@
                  [hiccup "2.0.0-alpha1"]
                  [markdown-clj "0.9.99"]]
   :main tutorial.core
-  :plugins [[lein-ring "0.9.7"]]
+  :plugins [[lein-ring "0.12.5"]]
   :ring {:handler tutorial.handler/app}
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
