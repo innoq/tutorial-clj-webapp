@@ -116,7 +116,7 @@ Or you can just refer all of the functions from a namespace (only a good idea if
 
 ## Task 01:
 
-Update your application by modifiying the `project.clj` file to include a dependency to hiccup (currently in version `2.0.0-alpha1`).
+Update your application by modifiying the `project.clj` file to include a dependency to hiccup (the 2.x version).
 
 In the `src/todo_app/handler.clj` file, modify the `page` function so that it sets the title of the page and adds a variable number of elements to the body of the page. Also include the 'splendor.css' file that is a static resource in the project (found under `resources/public`) to the HTML page (HINT: use the `hiccup.page/include-css` function).
 
